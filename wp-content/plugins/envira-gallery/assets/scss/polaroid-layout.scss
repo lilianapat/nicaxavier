@@ -1,0 +1,30 @@
+.envira-layout-polaroid {
+    .envira-gallery-item-inner {
+        padding: 16px 16px;
+        background-color: #fff;
+        border: 1px solid #D9D9D9;
+        .envira-title {
+            font-size: 20px;
+            font-weight: 500;
+            text-align: left;
+            text-transform: capitalize;
+            margin-top: 24px;
+        }
+        .envira-caption {
+            text-align: left;
+            text-transform: capitalize;
+            ul {
+                padding-left:16px;
+            }
+            ol {
+                padding-left:16px;
+            }
+        }
+    }
+    .envira-gallery-item-inner.envira-proofing-selected {
+        padding-bottom: 60px;
+    }
+    .envira-gallery-item-inner.no-caption {
+        padding-bottom: 80px;
+    }
+}

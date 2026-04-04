@@ -1,0 +1,603 @@
+/**
+ * Envira AI Upsell Modal.
+ */
+.envira-ai-modal {
+  display: none;
+
+  .envira-ai-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9991;
+  }
+
+  .envira-ai-upsell-modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding-left: 30px;
+    border-radius: 16px;
+    z-index: 9992;
+    max-width: 535px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    max-height: 85vh;
+    overflow-y: auto;
+
+    .close-envira-ai-upsell {
+      position: absolute;
+      top: 0px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      font-size: 30px;
+      text-decoration: none;
+      color: #000;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      background: none;
+      &:focus,
+      &:active {
+        outline: none;
+        border: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .upsell-content-container {
+    width: 100%;
+    padding-top: 30px;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+      margin-top: 5px;
+    }
+
+    .upsell-two-column {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 15px;
+
+      .upsell-left-column {
+        width: 55%;
+        .top-content {
+          h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0;
+          }
+          ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            li {
+              line-height: 1;
+              &::marker {
+                color: #7cc148;
+                font-size: 1.5em;
+              }
+            }
+          }
+        }
+
+        .bottom-content {
+          padding-top: 25px;
+          padding-bottom: 18px;
+
+          .gift-text {
+            font-size: 12px;
+            margin-top: 12px;
+
+            .offer-text {
+              font-weight: 700;
+            }
+
+            .gift-icon {
+              vertical-align: middle;
+              margin-right: 2px;
+              margin-top: -5px;
+            }
+          }
+        }
+      }
+
+      .upsell-right-column {
+        width: 45%;
+        flex: 1;
+        border-bottom-right-radius: 16px;
+        overflow: hidden;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  /**
+	 * Responsive.
+	 */
+  @media (max-width: 782px) {
+    .upsell-content-container {
+      .upsell-two-column {
+        .upsell-left-column {
+          .bottom-content {
+            .button {
+              line-height: 38px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 588px) {
+    .envira-ai-upsell-modal-content {
+      width: 85vw;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .envira-ai-upsell-modal-content {
+      max-width: 75%;
+      padding: 15px;
+      max-height: 85vh;
+      top: 10%;
+      transform: translate(-50%, 0);
+      overflow-y: auto;
+    }
+
+    .upsell-content-container {
+      padding-top: 20px;
+
+      h3 {
+        font-size: 16px;
+      }
+
+      .upsell-two-column {
+        flex-direction: column;
+
+        .upsell-left-column,
+        .upsell-right-column {
+          width: 100%;
+        }
+
+        .upsell-right-column {
+          img {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .close-envira-ai-upsell {
+      font-size: 25px;
+    }
+  }
+}
+
+/**
+ * Envira AI Create Images Modal.
+ */
+#envira-ai-create-images-modal {
+  .envira-ai-create-images-modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 7px;
+    z-index: 9992;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    max-height: 85vh;
+    overflow-y: auto;
+
+    .close-envira-ai-create-images {
+      position: absolute;
+      top: 0px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      font-size: 30px;
+      text-decoration: none;
+      color: #000;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      background: none;
+      &:focus,
+      &:active {
+        outline: none;
+        border: none;
+        box-shadow: none;
+      }
+    }
+
+    .create-images-content-container {
+      width: 100%;
+
+      .main-title {
+        padding: 8px 16px 8px 24px;
+        border-bottom: 1px solid #00000026;
+
+        h3 {
+          font-size: 16px;
+          font-weight: 600;
+          padding: 0;
+          margin: 0;
+        }
+      }
+
+      .create-images-two-columns {
+        display: flex;
+        justify-content: space-between;
+
+        .left-column {
+          width: 45%;
+          padding: 24px;
+          border-right: 1px solid #00000026;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .form-container {
+            .form-group {
+              margin-bottom: 15px;
+
+              label {
+                font-size: 14px;
+                font-weight: 600;
+                margin-bottom: 5px;
+                display: block;
+                color: #26321d;
+              }
+
+              input {
+                font-size: 14px;
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #00000026;
+                border-radius: 3px;
+              }
+
+              select {
+                font-size: 14px;
+                width: 100%;
+                padding: 7px 8px 7px 12px;
+                border: 1px solid #00000026;
+                border-radius: 3px;
+              }
+
+              textarea {
+                font-size: 14px;
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #00000026;
+                border-radius: 3px;
+                resize: none;
+
+                &::-webkit-input-placeholder {
+                  /* Chrome, Safari, Edge */
+                  color: #00000080;
+                }
+
+                &::-moz-placeholder {
+                  /* Firefox 19+ */
+                  color: #00000080;
+                }
+
+                &:-ms-input-placeholder {
+                  /* IE 10+ */
+                  color: #00000080;
+                }
+
+                &::-ms-input-placeholder {
+                  /* Edge */
+                  color: #00000080;
+                }
+
+                &::placeholder {
+                  /* Standard */
+                  color: #00000080;
+                }
+              }
+
+              button {
+                font-size: 14px;
+                width: 100%;
+                background-color: #72b73e;
+                color: #fff;
+                border: none;
+                border-radius: 3px;
+                padding: 12px 20px;
+                cursor: pointer;
+                display: inline-block;
+                text-align: center;
+                text-decoration: none;
+                transition: background-color 0.3s;
+                font-weight: 600;
+                line-height: 18px;
+                margin-top: 18px;
+
+                &:hover {
+                  background-color: #95dc5e;
+                }
+
+                &.disabled {
+                  background-color: #ccc;
+                  color: #888;
+                  cursor: not-allowed;
+                  pointer-events: none;
+                }
+              }
+
+              .ai-error-message,
+              .envira-ai-response-error-msg {
+                color: #ff0000;
+                font-size: 13px;
+                display: none;
+                margin-top: 5px;
+                font-weight: 600;
+              }
+
+              .characters-limit {
+                color: #00000080;
+                font-size: 12px;
+                display: block;
+              }
+
+              .form-group.envira-ai-error .ai-error-message {
+                display: block;
+              }
+
+              .ajax-create-success.envira-ai-response-error-msg,
+              .ajax-add-success.envira-ai-response-error-msg {
+                color: #454545;
+              }
+
+              .button-envira-ai-write-new {
+                display: none;
+                color: #72b73e;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 18px;
+
+                &:hover {
+                  color: #95dc5e;
+                }
+              }
+
+              &.ai-add-selected-images {
+                display: none;
+              }
+
+              &.item-center {
+                text-align: center;
+              }
+            }
+            .ai-write-new-btn {
+              text-align: center;
+            }
+          }
+        }
+
+        .right-column {
+          width: 55%;
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .generate-image-text {
+            text-align: center;
+            padding: 0 60px;
+
+            img {
+              margin-bottom: 10px;
+            }
+
+            p {
+              margin: 0;
+              color: #00000080;
+              font-weight: 400;
+            }
+          }
+
+          .generated-ai-images-headline {
+            text-align: center;
+            margin-bottom: 10px;
+
+            p {
+              margin: 0;
+              color: #00000080;
+              font-weight: 400;
+            }
+          }
+
+          .generated-ai-images-result {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            width: 100%;
+
+            .ai-image-item {
+              position: relative;
+              max-width: 100%;
+              align-items: center;
+              vertical-align: middle;
+              display: flex;
+              aspect-ratio: 1 / 1;
+              overflow: hidden;
+
+              img.ai-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+
+              a {
+                outline: none;
+                box-shadow: none;
+
+                &:focus {
+                  outline: none;
+                  box-shadow: none;
+                }
+              }
+
+              /* Download Icon */
+              img.download-image {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+                opacity: 0;
+                transition: opacity 0.3s;
+              }
+
+              /* Checkbox for selecting image */
+              .ai-image-checkbox {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 20px;
+                height: 20px;
+                appearance: none;
+                border: 1px solid #00000026;
+                border-radius: 4px;
+                background-color: #ffffffcc;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0; /* Hidden by default */
+                transition: opacity 0.3s;
+
+                /* Custom right tick */
+                background-image: none;
+
+                /* When checked, apply background color and border color */
+                &:checked {
+                  background-color: #7cc148;
+                  border-color: #7cc148;
+                  opacity: 1;
+
+                  /* Custom right tick icon */
+                  &::before {
+                    content: "";
+                    width: 10px;
+                    height: 10px;
+                    background-image: url("images/icons/right-tick.svg");
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    display: block;
+                    margin: 0;
+                  }
+                }
+              }
+
+              /* Show both download icon and checkbox on hover */
+              &:hover img.download-image,
+              &:hover .ai-image-checkbox {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .envira-ai-images-spinner {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      z-index: 9993;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      .ai-spinner {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+
+  /**
+	 * Responsive.
+	 */
+  @media (max-width: 841px) {
+    .envira-ai-create-images-modal-content {
+      width: 95vw;
+    }
+
+    .create-images-content-container {
+      .create-images-two-columns {
+        .right-column {
+          .generate-image-text {
+            padding: 0 35px !important;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .envira-ai-create-images-modal-content {
+      max-width: 85vw;
+      max-height: 85vh;
+      top: 5%;
+      transform: translate(-50%, 0);
+      overflow-y: auto;
+    }
+
+    .create-images-content-container {
+      .main-title {
+        padding-left: 15px !important;
+        padding-right: 40px !important;
+      }
+
+      .create-images-two-columns {
+        flex-direction: column;
+        padding: 0px 15px 15px 15px;
+
+        .left-column,
+        .right-column {
+          width: 100% !important;
+          border-right: 0px !important;
+          padding: 20px 0px 20px 0px !important;
+        }
+
+        .left-column {
+          border-bottom: 1px solid #00000026;
+        }
+
+        .right-column {
+          .generate-image-text {
+            padding: 0 15px !important;
+          }
+        }
+      }
+    }
+  }
+}

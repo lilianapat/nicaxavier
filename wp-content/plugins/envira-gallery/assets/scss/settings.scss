@@ -1,0 +1,420 @@
+/* ==========================================================================
+   settings.css loads on all the Envira Settings Administration Screen
+
+   Any styles that will be used by the Settings section (or are useful to be
+   included for future use) should be added to this file:
+   - Settings
+   - Settings Tabs
+   - Addons
+   ========================================================================== */
+
+/* ==========================================================================
+   Imports
+   ========================================================================== */
+@import "vars";
+@import "mixins";
+@import 'global';
+
+/* ==========================================================================
+   Settings Styles
+   ========================================================================== */
+.envira-tab {
+	label {
+		display: block;
+	}
+}
+.nav-tab {
+	// ensure tabs are floated
+	float: left;
+}
+
+#envira-gallery-settings {
+	padding: 20px 0;
+
+	#envira-gallery-refresh-submit {
+		margin-left: 10px;
+	}
+
+	.envira-hideme {
+		display: none;
+	}
+	/**
+	* Clearing
+	*/
+	.envira-clear {
+	    clear: both;
+
+		&:after {
+		    clear: both;
+		    content: '.';
+		    display: block;
+		    height: 0;
+		    line-height: 0;
+		    overflow: auto;
+		    visibility: hidden;
+		    zoom: 1;
+		}
+	}
+
+	.envira-gallery {
+	    margin: 15px 0 20px;
+	}
+
+	/**
+	* Tab Panels
+	*/
+	.envira-tab {
+	    display: none;
+
+	    /**
+	    * Active Tab Panel
+	    */
+	    &.envira-active {
+	     display: block;
+	    }
+
+	    th {
+	     width: 170px;
+          padding-right: 40px;
+			@include mq(xs) {
+				width: auto;
+			}
+	    }
+
+	    input[type="text"],
+		input[type="number"],
+		input[type="password"],
+		select,
+		textarea {
+		    width: 350px;
+		    padding-right: 0;
+			@include mq(xs) {
+				width: 100%;
+			}
+			font-size: 13px;
+		}
+
+	    input[type="text"],
+		input[type="number"],
+		input[type="password"] {
+			height: 32px;
+			@include mq(xs) {
+				height: auto;
+			}
+		}
+
+		/**
+		* Copy to Clipboard Button
+		*/
+		a.envira-clipboard {
+			width: 33px;
+			padding: 0;
+		}
+
+		/**
+		* Submit Button
+		*/
+		#envira-gallery-settings-submit {
+			margin: 40px 0 0 0px;
+		}
+	}
+
+	/**
+	* Refresh
+	*/
+	#envira-gallery-refresh-submit {
+     vertical-align: baseline;
+	}
+	.envira-external-req{
+	    border: 1px solid $primary-color;
+	    border-radius: $border-radius;
+	    padding: 30px;
+	    h2{
+	        font-size: 20px;
+	        margin: 0;
+	        padding: 0;
+	    }
+	}
+	.envira-external-req-active{
+	    border: 1px solid $green;
+	    background-color:  $white;
+	    border-radius: $border-radius;
+	    padding: 30px;
+	    h2{
+	        font-size: 20px;
+	        font-weight: 600;
+	        margin: 0;
+	        padding: 0;
+	    }
+	}
+}
+
+/* ==========================================================================
+   Settings Tab Styles
+   ========================================================================== */
+#envira-tabs {
+	.form-table {
+		th, td {
+			padding-top: 25px;
+			padding-bottom: 25px;
+		}
+		th {
+			@include mq(sm) {
+				padding-top: 40px;
+				padding-bottom: 10px;
+				padding-right: 0px !important;
+			}
+			@include mq(xs) {
+				padding-top: 40px;
+				padding-bottom: 10px;
+				padding-right: 0px !important;
+			}
+		}
+		tr#envira-settings-key-box th { /* bit of a hack */
+			@include mq(sm) {
+				padding-top: 20px;
+			}
+			@include mq(xs) {
+				padding-top: 20px;
+			}
+		}
+		td {
+			@include mq(sm) {
+				padding-top: 0;
+				padding-right: 0px;
+			}
+			@include mq(xs) {
+				padding-top: 0;
+				padding-right: 0px;
+			}
+		}
+		#convert-to-envira-tab-content {
+			h3 {
+				font-size: 17px;
+			}
+			p {
+				font-size: 14px;
+				color: #3C434AB2;
+			}
+			a.convert-envira-gallery-tab-btn {
+				margin-top: 15px;
+			}
+			.envira-posttype-dropdown-error {
+				display: none;
+				color: red;
+				font-size: 13px;
+			}
+			.envira-convert-gallery-message {
+				display: none;
+				font-size: 13px;
+
+				&.success {
+					color: #2E2E2E;
+				}
+				&.error {
+					color: red;
+				}
+			}
+			.envira-convert-process-logs {
+				display: none;
+				margin-top: 15px;
+
+				p {
+					font-size: 13px;
+					color: #414a4c;
+					font-weight: 400;
+					margin-top: 5px;
+					margin-bottom: 5px;
+				}
+			}
+			.envira-convert-progress-bar-container {
+				width: 100%;
+				background-color: #f3f3f3;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				margin: 10px 0;
+				height: 10px;
+				position: relative;
+
+				.envira-convert-progress-bar {
+					width: 0;
+					height: 100%;
+					background-color: #4caf50;
+					border-radius: 25px;
+					transition: width 0.5s ease;
+				}
+			}
+			.envira-convert-important-note {
+				color: #000;
+			}
+		}
+		tr {
+			border-bottom: 1px solid #ddd;
+		}
+		tr.no-bottom-border,
+		tr.title {
+			border-bottom: 0;
+			label {
+				font-size: 21px;
+			}
+			h6 {
+				font-size: 14px;
+				line-height: 16px;
+				margin: 5px auto;
+			}
+		}
+	}
+	.envira-tab {
+		table.form-table {
+			tr:first-of-type th,
+			tr:first-of-type td {
+				padding-top: 0;
+			}
+			input[type=checkbox] {
+				margin-top: 0px; /* was 10px 4/12/19 */
+				float: left;
+			}
+
+		}
+		#envira-media-delete {
+			table.form-table {
+				tr:first-of-type th,
+				tr:first-of-type td {
+					padding-top: 20px;
+				}
+			}
+		}
+	}
+
+	.description {
+		color: $grey;
+		font-size: 13px;
+		margin-top: 0px;
+	}
+}
+#envira-tabs-nav {
+	border-bottom: 0 !important;
+	background-color: $white;
+	height: $navbar-height;
+	padding-left: 20px;
+	margin: 0 0 0 -20px;
+	display: table;
+	width: 100%;
+	@include mq(xs) {
+		height: auto;
+		background-color: transparent;
+		margin: 5px 0 0 0;
+		padding: 0 10px;
+		display: table;
+	}
+	a {
+		float: left; /* Required for WordPress 4.3 and under */
+		border-left: 1px solid $color_bg;
+		border-right: 1px solid $color_bg;
+		border-top: 0;
+		color: $grey_dark;
+		background: none;
+		line-height: $navbar-height;
+		font-size: $font_size_tab;
+		padding: 0 15px;
+		margin: 0;
+		@include mq(xs) {
+			@include borderRadius(5px);
+			background-color: $beige_light;
+			padding: 0px 20px;
+			margin: 5px 5px 0px 0;
+			border: 1px solid #ddd;
+			line-height: 35px;
+			min-height: 30px;
+		}
+		.beta-feature {
+			color: white;
+			background-color: $green;
+			padding: 2px 5px;
+			border-radius: 4px;
+		}
+	}
+	a:first-child {
+/*        margin-left: 20px;
+		@include mq(xs) {
+			margin-left: 0;
+		}*/
+	}
+	.envira-active {
+		background-color: $color_bg;
+		border-left: 0;
+		border-right: 0;
+		border-top: 0;
+		color: $black;
+		@include mq(xs) {
+			background-color: $grey_dark;
+			color: $white;
+		}
+	}
+	a:hover {
+		@include mq(xs) {
+			background-color: $grey_dark;
+			color: $white;
+		}
+	}
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media only screen and (max-width: 770px) {
+	#envira-gallery-settings {
+		#envira-gallery-settings-submit {
+			margin: 40px 0 0 0;
+		}
+	}
+}
+
+.envira-toggle {
+	cursor: pointer;
+	display: inline-block;
+}
+.envira-switch {
+	display: inline-block;
+	background: #ccc;
+	border-radius: 18px;
+	width: 32px;
+	height: 18px;
+	position: relative;
+	vertical-align: middle;
+	transition: background 0.25s;
+
+	&:before,
+	&:after {
+		content: "";
+	}
+
+	&:before {
+		display: block;
+		background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+		border-radius: 50%;
+		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+		width: 16px;
+		height: 16px;
+		position: absolute;
+		top: 1px;
+		left: 1px;
+		transition: left 0.25s;
+	}
+
+	.envira-toggle:hover &:before {
+		background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+	}
+}
+
+#envira-settings-permissions-default input[type='checkbox']:checked + .envira-switch {
+	background: #3871ac;
+	&:before {
+		left: 15px;
+	}
+}
+#envira-settings-permissions-default input[type='checkbox'] {
+	position: absolute;
+	visibility: hidden;
+}
