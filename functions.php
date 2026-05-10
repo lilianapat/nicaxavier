@@ -197,3 +197,48 @@ function nica_menu_active_hash_js() {
 }
 add_action( 'wp_footer', 'nica_menu_active_hash_js' );
 
+
+// Ajustar altura do slider de testemunhos ao slide ativo
+// =============================================================================
+
+function nica_testimonial_slider_height_js() {
+    ?>
+    <script>
+    (function() {
+        function adjustSliderHeight(slider) {
+            var active = slider.querySelector('.x-slide.is-active, .x-slide[aria-hidden="false"], .slick-active .x-slide, .slick-current .x-slide');
+            if (!active) {
+                active = slider.querySelector('.x-slide, .slick-slide:not([aria-hidden="true"])');
+            }
+            if (active) {
+                slider.style.height = active.offsetHeight + 'px';
+            }
+        }
+
+        function initSliders() {
+            var sliders = document.querySelectorAll('.x-slider, [data-x-element="slider"]');
+            sliders.forEach(function(slider) {
+                adjustSliderHeight(slider);
+
+                var observer = new MutationObserver(function() {
+                    adjustSliderHeight(slider);
+                });
+                observer.observe(slider, { attributes: true, subtree: true, attributeFilter: ['class', 'aria-hidden'] });
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initSliders);
+        } else {
+            initSliders();
+        }
+        window.addEventListener('resize', function() {
+            var sliders = document.querySelectorAll('.x-slider, [data-x-element="slider"]');
+            sliders.forEach(function(slider) { adjustSliderHeight(slider); });
+        });
+    })();
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'nica_testimonial_slider_height_js' );
+
