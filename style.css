@@ -480,13 +480,15 @@ li.trp-language-switcher-container:not(.current-menu-item):not(.current-language
 
 /* ===== Menu: hover e item ativo ===== */
 
-/* Sem scroll: tudo branco, hover com underline mas sem cor */
+/* Sem scroll: tudo branco, hover e ativo com underline mas sem mudar cor */
 .x-menu .current-menu-item > a .x-anchor-text-primary {
     text-decoration: underline !important;
+    color: #ffffff !important;
 }
 
 .x-menu a:hover .x-anchor-text-primary {
     text-decoration: underline !important;
+    color: #ffffff !important;
 }
 
 /* Com scroll (sticky/azul): hover e ativo ficam dourados */
