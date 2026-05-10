@@ -470,16 +470,20 @@
 }
 
 .x-slide-container.is-stacked .x-slide:not(.is-current-slide) {
-    display: none !important;
-    height: 0 !important;
-    overflow: hidden !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    opacity: 0 !important;
     pointer-events: none !important;
+    z-index: 0 !important;
 }
 
 .x-slide-container.is-stacked .x-slide.is-current-slide {
-    display: block !important;
-    height: auto !important;
     position: relative !important;
+    height: auto !important;
+    opacity: 1 !important;
+    z-index: 1 !important;
 }
 
 /* ===== Language Switcher ===== */
