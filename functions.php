@@ -205,25 +205,21 @@ function nica_testimonial_slider_height_js() {
     ?>
     <script>
     (function() {
-        function adjustSliderHeight(slider) {
-            var active = slider.querySelector('.x-slide.is-active, .x-slide[aria-hidden="false"], .slick-active .x-slide, .slick-current .x-slide');
-            if (!active) {
-                active = slider.querySelector('.x-slide, .slick-slide:not([aria-hidden="true"])');
-            }
-            if (active) {
-                slider.style.height = active.offsetHeight + 'px';
-            }
+        function adjustSliderHeight(container) {
+            var active = container.querySelector('.x-slide.is-current-slide');
+            if (!active) return;
+            container.style.height = active.offsetHeight + 'px';
         }
 
         function initSliders() {
-            var sliders = document.querySelectorAll('.x-slider, [data-x-element="slider"]');
-            sliders.forEach(function(slider) {
-                adjustSliderHeight(slider);
+            var containers = document.querySelectorAll('.x-slide-container.is-stacked');
+            containers.forEach(function(container) {
+                adjustSliderHeight(container);
 
                 var observer = new MutationObserver(function() {
-                    adjustSliderHeight(slider);
+                    adjustSliderHeight(container);
                 });
-                observer.observe(slider, { attributes: true, subtree: true, attributeFilter: ['class', 'aria-hidden'] });
+                observer.observe(container, { attributes: true, subtree: true, attributeFilter: ['class'] });
             });
         }
 
@@ -233,8 +229,7 @@ function nica_testimonial_slider_height_js() {
             initSliders();
         }
         window.addEventListener('resize', function() {
-            var sliders = document.querySelectorAll('.x-slider, [data-x-element="slider"]');
-            sliders.forEach(function(slider) { adjustSliderHeight(slider); });
+            document.querySelectorAll('.x-slide-container.is-stacked').forEach(function(c) { adjustSliderHeight(c); });
         });
     })();
     </script>
