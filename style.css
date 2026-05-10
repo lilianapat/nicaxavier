@@ -480,12 +480,22 @@ li.trp-language-switcher-container:not(.current-menu-item):not(.current-language
 
 /* ===== Menu: hover e item ativo ===== */
 
+/* Sem scroll: tudo branco, hover com underline mas sem cor */
 .x-menu .current-menu-item > a .x-anchor-text-primary {
+    text-decoration: underline !important;
+}
+
+.x-menu a:hover .x-anchor-text-primary {
+    text-decoration: underline !important;
+}
+
+/* Com scroll (sticky/azul): hover e ativo ficam dourados */
+.x-bar-is-sticky .x-menu .current-menu-item > a .x-anchor-text-primary {
     text-decoration: underline !important;
     color: #b9925b !important;
 }
 
-.x-menu a:hover .x-anchor-text-primary {
+.x-bar-is-sticky .x-menu a:hover .x-anchor-text-primary {
     text-decoration: underline !important;
     color: #b9925b !important;
 }
@@ -497,15 +507,15 @@ li.trp-language-switcher-container:not(.current-menu-item):not(.current-language
     text-decoration: none !important;
 }
 
-.x-menu .menu-item-368.current-menu-item a .x-anchor-text-primary,
-.x-menu .menu-item-369.current-menu-item a .x-anchor-text-primary,
-.x-menu .menu-item-370.current-menu-item a .x-anchor-text-primary,
-.x-menu .menu-item-368 a:hover .x-anchor-text-primary,
-.x-menu .menu-item-369 a:hover .x-anchor-text-primary,
-.x-menu .menu-item-370 a:hover .x-anchor-text-primary,
-.x-menu .menu-item-368 a.nica-aula-active .x-anchor-text-primary,
-.x-menu .menu-item-369 a.nica-aula-active .x-anchor-text-primary,
-.x-menu .menu-item-370 a.nica-aula-active .x-anchor-text-primary {
+.x-bar-is-sticky .x-menu .menu-item-368.current-menu-item a .x-anchor-text-primary,
+.x-bar-is-sticky .x-menu .menu-item-369.current-menu-item a .x-anchor-text-primary,
+.x-bar-is-sticky .x-menu .menu-item-370.current-menu-item a .x-anchor-text-primary,
+.x-bar-is-sticky .x-menu .menu-item-368 a:hover .x-anchor-text-primary,
+.x-bar-is-sticky .x-menu .menu-item-369 a:hover .x-anchor-text-primary,
+.x-bar-is-sticky .x-menu .menu-item-370 a:hover .x-anchor-text-primary,
+.x-bar-is-sticky .x-menu .menu-item-368 a.nica-aula-active .x-anchor-text-primary,
+.x-bar-is-sticky .x-menu .menu-item-369 a.nica-aula-active .x-anchor-text-primary,
+.x-bar-is-sticky .x-menu .menu-item-370 a.nica-aula-active .x-anchor-text-primary {
     text-decoration: underline !important;
     color: #b9925b !important;
 }
