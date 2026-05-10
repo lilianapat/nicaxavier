@@ -487,7 +487,7 @@
     opacity: 1 !important;
 }
 .trp-language-switcher-container:not(.current-language-menu-item) .trp-ls-language-name {
-    opacity: 0.5 !important;
+    opacity: 1 !important;
 }
 .trp-language-switcher-container.current-language-menu-item .trp-ls-language-name {
     opacity: 1 !important;
@@ -559,14 +559,21 @@
     color: #b9925b !important;
 }
 
-/* Aulas grupo/individuais/online: branco por defeito, SEM underline */
+/* Aulas grupo/individuais/online: branco, SEM underline */
+.x-menu .menu-item-368 a,
+.x-menu .menu-item-369 a,
+.x-menu .menu-item-370 a,
+.x-menu .menu-item-368 a:hover,
+.x-menu .menu-item-369 a:hover,
+.x-menu .menu-item-370 a:hover {
+    text-decoration: none !important;
+}
 .x-menu .menu-item-368 a .x-anchor-text-primary,
 .x-menu .menu-item-369 a .x-anchor-text-primary,
 .x-menu .menu-item-370 a .x-anchor-text-primary {
     color: #ffffff !important;
     text-decoration: none !important;
 }
-/* Aulas hover dourado, SEM underline */
 .x-bar-absolute .x-menu .menu-item-368 a:hover .x-anchor-text-primary,
 .x-bar-absolute .x-menu .menu-item-369 a:hover .x-anchor-text-primary,
 .x-bar-absolute .x-menu .menu-item-370 a:hover .x-anchor-text-primary,
@@ -579,7 +586,6 @@
     color: #b9925b !important;
     text-decoration: none !important;
 }
-/* Aulas ativo dourado, SEM underline */
 .x-bar-fixed .x-menu .menu-item-368.current-menu-item a .x-anchor-text-primary,
 .x-bar-fixed .x-menu .menu-item-369.current-menu-item a .x-anchor-text-primary,
 .x-bar-fixed .x-menu .menu-item-370.current-menu-item a .x-anchor-text-primary,
