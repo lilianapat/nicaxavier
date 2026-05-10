@@ -205,37 +205,42 @@ function nica_testimonial_slider_height_js() {
     ?>
     <script>
     (function() {
-        function adjustSliderHeight(container) {
+        function getActiveHeight(container) {
             var active = container.querySelector('.x-slide.is-current-slide');
-            if (!active) return;
-            var h = active.scrollHeight;
-            if (h > 0) {
-                container.style.setProperty('height', h + 'px', 'important');
-            }
+            return active ? active.scrollHeight : 0;
         }
 
         function initSliders() {
             var containers = document.querySelectorAll('.x-slide-container.is-stacked');
             containers.forEach(function(container) {
-                // correr imediatamente e depois com delay para garantir que o Cornerstone já definiu a altura
-                adjustSliderHeight(container);
-                setTimeout(function() { adjustSliderHeight(container); }, 300);
-                setTimeout(function() { adjustSliderHeight(container); }, 800);
-
-                var observer = new MutationObserver(function() {
-                    setTimeout(function() { adjustSliderHeight(container); }, 50);
+                var observer = new MutationObserver(function(mutations) {
+                    // pausar observer para não criar loop infinito
+                    observer.disconnect();
+                    var h = getActiveHeight(container);
+                    if (h > 0) {
+                        container.style.setProperty('height', h + 'px', 'important');
+                    }
+                    // retomar observer
+                    observer.observe(container, { attributes: true, childList: true, subtree: true, attributeFilter: ['class', 'style'] });
                 });
-                observer.observe(container, { attributes: true, subtree: true, attributeFilter: ['class', 'style'] });
+                observer.observe(container, { attributes: true, childList: true, subtree: true, attributeFilter: ['class', 'style'] });
+
+                // ajuste inicial
+                var h = getActiveHeight(container);
+                if (h > 0) container.style.setProperty('height', h + 'px', 'important');
             });
         }
 
         window.addEventListener('load', function() {
             initSliders();
-            setTimeout(initSliders, 500);
+            setTimeout(initSliders, 600);
         });
 
         window.addEventListener('resize', function() {
-            document.querySelectorAll('.x-slide-container.is-stacked').forEach(function(c) { adjustSliderHeight(c); });
+            document.querySelectorAll('.x-slide-container.is-stacked').forEach(function(c) {
+                var h = getActiveHeight(c);
+                if (h > 0) c.style.setProperty('height', h + 'px', 'important');
+            });
         });
     })();
     </script>
