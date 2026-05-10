@@ -560,14 +560,6 @@
 }
 
 /* Aulas grupo/individuais/online: branco por defeito, SEM underline */
-.x-menu .menu-item-368 a,
-.x-menu .menu-item-369 a,
-.x-menu .menu-item-370 a,
-.x-menu .menu-item-368 a:hover,
-.x-menu .menu-item-369 a:hover,
-.x-menu .menu-item-370 a:hover {
-    text-decoration: none !important;
-}
 .x-menu .menu-item-368 a .x-anchor-text-primary,
 .x-menu .menu-item-369 a .x-anchor-text-primary,
 .x-menu .menu-item-370 a .x-anchor-text-primary {
