@@ -208,26 +208,32 @@ function nica_testimonial_slider_height_js() {
         function adjustSliderHeight(container) {
             var active = container.querySelector('.x-slide.is-current-slide');
             if (!active) return;
-            container.style.height = active.offsetHeight + 'px';
+            var h = active.scrollHeight;
+            if (h > 0) {
+                container.style.setProperty('height', h + 'px', 'important');
+            }
         }
 
         function initSliders() {
             var containers = document.querySelectorAll('.x-slide-container.is-stacked');
             containers.forEach(function(container) {
+                // correr imediatamente e depois com delay para garantir que o Cornerstone já definiu a altura
                 adjustSliderHeight(container);
+                setTimeout(function() { adjustSliderHeight(container); }, 300);
+                setTimeout(function() { adjustSliderHeight(container); }, 800);
 
                 var observer = new MutationObserver(function() {
-                    adjustSliderHeight(container);
+                    setTimeout(function() { adjustSliderHeight(container); }, 50);
                 });
-                observer.observe(container, { attributes: true, subtree: true, attributeFilter: ['class'] });
+                observer.observe(container, { attributes: true, subtree: true, attributeFilter: ['class', 'style'] });
             });
         }
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initSliders);
-        } else {
+        window.addEventListener('load', function() {
             initSliders();
-        }
+            setTimeout(initSliders, 500);
+        });
+
         window.addEventListener('resize', function() {
             document.querySelectorAll('.x-slide-container.is-stacked').forEach(function(c) { adjustSliderHeight(c); });
         });
