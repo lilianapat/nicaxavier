@@ -464,6 +464,24 @@
     padding: 0 !important;
 }
 
+/* ===== Slider Testemunhos: altura dinâmica ===== */
+.x-slide-container.is-stacked {
+    height: auto !important;
+}
+
+.x-slide-container.is-stacked .x-slide:not(.is-current-slide) {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+.x-slide-container.is-stacked .x-slide.is-current-slide {
+    display: block !important;
+    height: auto !important;
+    position: relative !important;
+}
+
 /* ===== Language Switcher ===== */
 /* Idioma ativo: azul e bold */
 li.trp-language-switcher-container.current-menu-item .trp-ls-language-name,
