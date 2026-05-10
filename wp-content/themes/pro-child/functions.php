@@ -79,3 +79,129 @@ function shortcode_mensagem_erro_pesquisa() {
     </div>';
 }
 add_shortcode('mensagem_erro_pesquisa', 'shortcode_mensagem_erro_pesquisa');
+
+
+function nica_translate_search_text( $translated_text, $text, $domain ) {
+    if ( is_admin() ) {
+        return $translated_text;
+    }
+
+    if ( 'Search' === $text || 'Search …' === $text || 'Search...' === $text ) {
+        return 'Pesquisar';
+    }
+
+    return $translated_text;
+}
+add_filter( 'gettext', 'nica_translate_search_text', 20, 3 );
+
+
+// Desativar comentários na página de artigo (single post)
+// =============================================================================
+
+function nica_disable_comments_single( $open, $post_id ) {
+    if ( is_singular( 'post' ) ) {
+        return false;
+    }
+    return $open;
+}
+add_filter( 'comments_open', 'nica_disable_comments_single', 10, 2 );
+add_filter( 'pings_open', 'nica_disable_comments_single', 10, 2 );
+
+// Esconder o bloco de comentários mesmo que existam comentários antigos
+function nica_hide_comments_template( $template ) {
+    if ( is_singular( 'post' ) ) {
+        return get_stylesheet_directory() . '/comments-blank.php';
+    }
+    return $template;
+}
+add_filter( 'comments_template', 'nica_hide_comments_template' );
+
+
+// Artigos Relacionados no final do single post
+// =============================================================================
+
+function nica_related_posts_html() {
+    if ( ! is_singular( 'post' ) ) {
+        return;
+    }
+
+    $post_id   = get_the_ID();
+    $categories = wp_get_post_categories( $post_id );
+
+    $args = array(
+        'category__in'       => $categories,
+        'post__not_in'       => array( $post_id ),
+        'posts_per_page'     => 3,
+        'orderby'            => 'rand',
+        'ignore_sticky_posts' => 1,
+    );
+
+    $related = new WP_Query( $args );
+
+    if ( ! $related->have_posts() ) {
+        return;
+    }
+
+    echo '<div class="nica-related-posts">';
+    echo '<h3>Artigos Relacionados</h3>';
+    echo '<div class="nica-related-grid">';
+
+    while ( $related->have_posts() ) {
+        $related->the_post();
+        $thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
+        echo '<div class="nica-related-item">';
+        echo '<a href="' . esc_url( get_permalink() ) . '">';
+        if ( $thumb ) {
+            echo '<img src="' . esc_url( $thumb ) . '" alt="' . esc_attr( get_the_title() ) . '">';
+        }
+        echo '<div class="nica-related-item-title">' . esc_html( get_the_title() ) . '</div>';
+        echo '</a>';
+        echo '</div>';
+    }
+
+    wp_reset_postdata();
+
+    echo '</div></div>';
+}
+add_action( 'x_before_the_comments', 'nica_related_posts_html' );
+
+
+// Marcar ligação de menu ativa com base no hash (#fragmento) via JavaScript
+// =============================================================================
+
+function nica_menu_active_hash_js() {
+    ?>
+    <script>
+    (function() {
+        function updateActiveHash() {
+            var hash = window.location.hash;
+            var aulaItems = document.querySelectorAll('.menu-item-368, .menu-item-369, .menu-item-370');
+            if (!aulaItems.length) return;
+
+            aulaItems.forEach(function(item) {
+                var link = item.querySelector('a');
+                if (!link) return;
+                if (hash && link.href.indexOf(hash) !== -1) {
+                    item.classList.add('current-menu-item');
+                } else {
+                    item.classList.remove('current-menu-item');
+                }
+            });
+        }
+
+        window.addEventListener('load', updateActiveHash);
+        window.addEventListener('hashchange', updateActiveHash);
+    })();
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'nica_menu_active_hash_js' );
+
+
+// Título "BLOG" na página de blog
+function nica_blog_title_js() {
+    if ( is_home() || is_archive() ) {
+        echo '<script id="nica-blog-title">window.addEventListener("load",function(){var m=document.querySelector(".x-main.left");if(m){var h=document.createElement("h1");h.className="nica-blog-title";h.textContent="BLOG";m.insertBefore(h,m.firstChild);}});</script>';
+    }
+}
+add_action( 'wp_head', 'nica_blog_title_js', 5 );
