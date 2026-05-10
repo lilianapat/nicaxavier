@@ -480,24 +480,24 @@ li.trp-language-switcher-container:not(.current-menu-item):not(.current-language
 
 /* ===== Menu: hover e item ativo ===== */
 
-/* Sem scroll: tudo branco, hover e ativo com underline mas sem mudar cor */
-.x-menu .current-menu-item > a .x-anchor-text-primary {
+/* Sem scroll (absolute): tudo branco */
+.x-bar-absolute .x-menu .current-menu-item > a .x-anchor-text-primary {
     text-decoration: underline !important;
     color: #ffffff !important;
 }
 
-.x-menu a:hover .x-anchor-text-primary {
+.x-bar-absolute .x-menu a:hover .x-anchor-text-primary {
     text-decoration: underline !important;
     color: #ffffff !important;
 }
 
-/* Com scroll (sticky/azul): hover e ativo ficam dourados */
-.x-bar-is-sticky .x-menu .current-menu-item > a .x-anchor-text-primary {
+/* Com scroll (fixed/azul): hover e ativo ficam dourados */
+.x-bar-fixed .x-menu .current-menu-item > a .x-anchor-text-primary {
     text-decoration: underline !important;
     color: #b9925b !important;
 }
 
-.x-bar-is-sticky .x-menu a:hover .x-anchor-text-primary {
+.x-bar-fixed .x-menu a:hover .x-anchor-text-primary {
     text-decoration: underline !important;
     color: #b9925b !important;
 }
@@ -509,15 +509,15 @@ li.trp-language-switcher-container:not(.current-menu-item):not(.current-language
     text-decoration: none !important;
 }
 
-.x-bar-is-sticky .x-menu .menu-item-368.current-menu-item a .x-anchor-text-primary,
-.x-bar-is-sticky .x-menu .menu-item-369.current-menu-item a .x-anchor-text-primary,
-.x-bar-is-sticky .x-menu .menu-item-370.current-menu-item a .x-anchor-text-primary,
-.x-bar-is-sticky .x-menu .menu-item-368 a:hover .x-anchor-text-primary,
-.x-bar-is-sticky .x-menu .menu-item-369 a:hover .x-anchor-text-primary,
-.x-bar-is-sticky .x-menu .menu-item-370 a:hover .x-anchor-text-primary,
-.x-bar-is-sticky .x-menu .menu-item-368 a.nica-aula-active .x-anchor-text-primary,
-.x-bar-is-sticky .x-menu .menu-item-369 a.nica-aula-active .x-anchor-text-primary,
-.x-bar-is-sticky .x-menu .menu-item-370 a.nica-aula-active .x-anchor-text-primary {
+.x-bar-fixed .x-menu .menu-item-368.current-menu-item a .x-anchor-text-primary,
+.x-bar-fixed .x-menu .menu-item-369.current-menu-item a .x-anchor-text-primary,
+.x-bar-fixed .x-menu .menu-item-370.current-menu-item a .x-anchor-text-primary,
+.x-bar-fixed .x-menu .menu-item-368 a:hover .x-anchor-text-primary,
+.x-bar-fixed .x-menu .menu-item-369 a:hover .x-anchor-text-primary,
+.x-bar-fixed .x-menu .menu-item-370 a:hover .x-anchor-text-primary,
+.x-bar-fixed .x-menu .menu-item-368 a.nica-aula-active .x-anchor-text-primary,
+.x-bar-fixed .x-menu .menu-item-369 a.nica-aula-active .x-anchor-text-primary,
+.x-bar-fixed .x-menu .menu-item-370 a.nica-aula-active .x-anchor-text-primary {
     text-decoration: underline !important;
     color: #b9925b !important;
 }
