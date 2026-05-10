@@ -205,42 +205,50 @@ function nica_testimonial_slider_height_js() {
     ?>
     <script>
     (function() {
-        function getActiveHeight(container) {
-            var active = container.querySelector('.x-slide.is-current-slide');
-            return active ? active.scrollHeight : 0;
+        function forceAuto(container) {
+            container.style.removeProperty('height');
+            container.style.setProperty('height', 'auto', 'important');
+        }
+
+        function pulseAuto(container) {
+            var times = [50, 100, 200, 350, 500, 750, 1000];
+            times.forEach(function(t) {
+                setTimeout(function() { forceAuto(container); }, t);
+            });
         }
 
         function initSliders() {
             var containers = document.querySelectorAll('.x-slide-container.is-stacked');
             containers.forEach(function(container) {
-                var observer = new MutationObserver(function(mutations) {
-                    // pausar observer para não criar loop infinito
-                    observer.disconnect();
-                    var h = getActiveHeight(container);
-                    if (h > 0) {
-                        container.style.setProperty('height', h + 'px', 'important');
-                    }
-                    // retomar observer
-                    observer.observe(container, { attributes: true, childList: true, subtree: true, attributeFilter: ['class', 'style'] });
-                });
-                observer.observe(container, { attributes: true, childList: true, subtree: true, attributeFilter: ['class', 'style'] });
+                forceAuto(container);
+                pulseAuto(container);
 
-                // ajuste inicial
-                var h = getActiveHeight(container);
-                if (h > 0) container.style.setProperty('height', h + 'px', 'important');
+                var observer = new MutationObserver(function(mutations) {
+                    var relevant = mutations.some(function(m) {
+                        return m.type === 'attributes' && m.attributeName === 'class' &&
+                               m.target.classList.contains('x-slide');
+                    });
+                    if (relevant) {
+                        pulseAuto(container);
+                    }
+                    // se o Cornerstone repôs o height inline, remove de imediato
+                    mutations.forEach(function(m) {
+                        if (m.type === 'attributes' && m.attributeName === 'style' && m.target === container) {
+                            forceAuto(container);
+                        }
+                    });
+                });
+                observer.observe(container, { attributes: true, subtree: true, attributeFilter: ['class', 'style'] });
             });
         }
 
         window.addEventListener('load', function() {
             initSliders();
-            setTimeout(initSliders, 600);
+            setTimeout(initSliders, 800);
         });
 
         window.addEventListener('resize', function() {
-            document.querySelectorAll('.x-slide-container.is-stacked').forEach(function(c) {
-                var h = getActiveHeight(c);
-                if (h > 0) c.style.setProperty('height', h + 'px', 'important');
-            });
+            document.querySelectorAll('.x-slide-container.is-stacked').forEach(forceAuto);
         });
     })();
     </script>
